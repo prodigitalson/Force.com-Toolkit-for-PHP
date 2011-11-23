@@ -201,4 +201,3 @@ class SforceCustomField {
     $this->visibleLines = $visibleLines;
   }
 }
-?>

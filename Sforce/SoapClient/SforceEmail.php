@@ -30,7 +30,7 @@ define ("EMAIL_PRIORITY_NORMAL", 'Normal');
 define ("EMAIL_PRIORITY_LOW", 'Low');
 define ("EMAIL_PRIORITY_LOWEST", 'Lowest');
 
-class Email {
+class SForceEmail {
   public function setBccSender($bccSender) {
     $this->bccSender = $bccSender;
   }
@@ -60,7 +60,7 @@ class Email {
   }
 }
 
-class SingleEmailMessage extends Email {
+class SforceSingleEmailMessage extends SforceEmail {
   public function __construct() {}
 
 
@@ -110,7 +110,7 @@ class SingleEmailMessage extends Email {
   }
 }
 
-class MassEmailMessage extends Email {
+class SforceMassEmailMessage extends SforceEmail {
   public function setTemplateId($templateId) {
     $this->templateId = $templateId;
   }

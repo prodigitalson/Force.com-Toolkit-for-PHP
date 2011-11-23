@@ -24,22 +24,16 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-define ("DEPLOYMENT_STATUS_INDEVELOPMENT", 'InDevelopment');
-define ("DEPLOYMENT_STATUS_DEPLOYED", 'Deployed');
+abstract class SforceProcessRequest {
+	public $comments;
+	public $nextApproverIds;
+}
 
-define ("GENDER_NEUTER", 'Neuter');
-define ("GENDER_MASCULINE", 'Masculine');
-define ("GENDER_FEMININE", 'Feminine');
+class SforceSforceProcessSubmitRequest extends SforceProcessRequest {
+	public $objectId;
+}
 
-define ("SHARING_MODEL_PRIVATE", 'Private');
-define ("SHARING_MODEL_READ", 'Read');
-define ("SHARING_MODEL_READWRITE", 'ReadWrite');
-
-define ("STARTS_WITH_CONSONANT", 'Consonant');
-define ("STARTS_WITH_VOWEL", 'Vowel');
-define ("STARTS_WITH_SPECIAL", 'Special');
-
-define ("TREAT_BLANKS_AS_BLANK", 'BlankAsBlank');
-define ("TREAT_BLANKS_AS_ZERO", 'BlankAsZero');
-
-?>
+class SforceProcessWorkitemRequest extends SforceProcessRequest {
+  public $action;
+  public $workitemId;
+}

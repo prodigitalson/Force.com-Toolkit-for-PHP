@@ -183,5 +183,5 @@ class SforcePartnerClient extends SforceBaseClient {
   	}
   	return $arr;
   }
-  
+}
 }

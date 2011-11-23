@@ -298,7 +298,7 @@ class SforceBaseClient {
 			}
 		}
 		
-		// try to add PackageVersionHeader
+		// try to add SforcePackageVersionHeader
 		$packageVersionHeaderCalls = array(
 			'convertLead', 'create', 'delete', 'describeGlobal',
 			'describeLayout', 'describeSObject', 'describeSObjects',
@@ -776,45 +776,45 @@ class SforceBaseClient {
 	 * the specified criteria.
 	 *
 	 * @param String $query Query String
-	 * @param QueryOptions $queryOptions  Batch size limit.  OPTIONAL
-	 * @return QueryResult
+	 * @param SforceQueryOptions $queryOptions  Batch size limit.  OPTIONAL
+	 * @return SforceQueryResult
 	 */
 	public function query($query) {
 		$this->setHeaders("query");
 		$QueryResult = $this->sforce->query(array (
 					  'queryString' => $query
 		))->result;
-		return new QueryResult($QueryResult);
+		return new SforceQueryResult($QueryResult);
 	}
 
 	/**
 	 * Retrieves the next batch of objects from a query.
 	 *
 	 * @param QueryLocator $queryLocator Represents the server-side cursor that tracks the current processing location in the query result set.
-	 * @param QueryOptions $queryOptions  Batch size limit.  OPTIONAL
-	 * @return QueryResult
+	 * @param SforceQueryOptions $queryOptions  Batch size limit.  OPTIONAL
+	 * @return SforceQueryResult
 	 */
 	public function queryMore($queryLocator) {
 		$this->setHeaders("queryMore");
 		$arg = new stdClass();
 		$arg->queryLocator = $queryLocator;
 		$QueryResult = $this->sforce->queryMore($arg)->result;
-		return new QueryResult($QueryResult);
+		return new SforceQueryResult($QueryResult);
 	}
 
 	/**
 	 * Retrieves data from specified objects, whether or not they have been deleted.
 	 *
 	 * @param String $query Query String
-	 * @param QueryOptions $queryOptions  Batch size limit.  OPTIONAL
-	 * @return QueryResult
+	 * @param SforceQueryOptions $queryOptions  Batch size limit.  OPTIONAL
+	 * @return SforceQueryResult
 	 */
 	public function queryAll($query, $queryOptions = NULL) {
 		$this->setHeaders("queryAll");
 		$QueryResult = $this->sforce->queryAll(array (
 						'queryString' => $query
 		))->result;
-		return new QueryResult($QueryResult);
+		return new SforceQueryResult($QueryResult);
 	}
 
 
@@ -915,7 +915,7 @@ class SforceSearchResult {
 	}
 }
 
-class QueryResult {
+class SforceQueryResult {
 	public $queryLocator;
 	public $done;
 	public $records;
@@ -926,7 +926,7 @@ class QueryResult {
 		$this->done = $response->done;
 		$this->size = $response->size;
 
-		if($response instanceof QueryResult) {
+		if($response instanceof SforceQueryResult) {
 			$this->records = $response->records;
 		} else {
 			$this->records = array();
@@ -982,7 +982,7 @@ class SObject {
 						$this->sobjects = $anArray;
 					} else {
 						// this is for parent to child relationships
-						$this->queryResult = new QueryResult($response->any);
+						$this->queryResult = new SforceQueryResult($response->any);
 					}
 
 				} else {
@@ -1001,11 +1001,11 @@ class SObject {
 									$anArray[$key] = $sobject;
 								} else {
 									// this is for parent to child relationships
-									//$this->queryResult = new QueryResult($item);
+									//$this->queryResult = new SforceQueryResult($item);
 									if (!isset($this->queryResult)) {
 										$this->queryResult = array();
 									}
-									array_push($this->queryResult, new QueryResult($item));
+									array_push($this->queryResult, new SforceQueryResult($item));
 								}
 							} else {
 								//$this->fields = $this->convertFields($item);
@@ -1207,7 +1207,7 @@ class SObject {
 	}
 
 	/*
-	 * If the stdClass has a done, we know it is a QueryResult
+	 * If the stdClass has a done, we know it is a SforceQueryResult
 	 */
 	function isQueryResult($param) {
 		return isset($param->done);

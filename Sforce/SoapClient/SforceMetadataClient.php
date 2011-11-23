@@ -167,9 +167,4 @@ class SforceMetadataClient {
   public function getLastResponseHeaders() {
     return $this->sforce->__getLastResponseHeaders();
   }
-
-
 }
-
-
-?>
