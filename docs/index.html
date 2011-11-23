@@ -10,7 +10,7 @@
 <body>
 <p><a href="http://developer.appexchange.com"><img src="images/adn-blog.gif" width="772" height="136" border="0" /></a></p>
 <h2 class="pNewHTMLPage">PHP 5 SOAP Extension Toolkit [AppExchange 7.0 API] </h2>
-<p class="pNewHTMLPage"><strong>Instructions</strong> | <a href="apidocs/index.html">API Docs</a> | <a href="apache.html">Apache Setup</a> | <a href="php.html">PHP Setup</a> | <a href="tests.html">Unit Tests</a></p>
+<p class="pNewHTMLPage"><strong>Instructions</strong> | <a href="api/index.html">API Docs</a> | <a href="apache.html">Apache Setup</a> | <a href="php.html">PHP Setup</a> | <a href="tests.html">Unit Tests</a></p>
 <hr />
 <p class="pBody">Although this toolkit is aimed at developers who are already familiar with PHP, novices will also find it helpful in learning PHP and the salesforce API calls. The toolkit is based on PHP 5 and the included SOAP extension. PHP 5's SOAP extension being written in C has the advantage of being faster than other SOAP implementations written in PHP. This  toolkit uses this extension to interface with the AppExchange API.</p>
 <p class="pBody">The toolkit supports the Partner WSDL only. You will have access to all the same objects and capabilities of the  API from the Partner WSDL as you do from the Enterprise WSDL. There is no need to use the Enterprise WSDL</p>
@@ -47,7 +47,7 @@
   </tr>
   </tbody>
 </table>
-<p class="pBody">In the soapclient directory, you will the SforcePartnerClient class which is used to make the connection and all method calls to the API. In order to create a connection, you first instantiate SforcePartnerClient and then pass in the WSDL. Once you have an instance of SforcePartnerClient, other AppExchange API method calls can be called directly on the instance. In this instance, you can login by calling <code>login</code> directly on <code>$mySForceConnection</code>. Browse the <a href="apidocs/index.html">API  doc</a> to learn more about each available method call.</p>
+<p class="pBody">In the soapclient directory, you will the SforcePartnerClient class which is used to make the connection and all method calls to the API. In order to create a connection, you first instantiate SforcePartnerClient and then pass in the WSDL. Once you have an instance of SforcePartnerClient, other AppExchange API method calls can be called directly on the instance. In this instance, you can login by calling <code>login</code> directly on <code>$mySForceConnection</code>. Browse the <a href="docs/index.html">API  doc</a> to learn more about each available method call.</p>
 <pre class="codebox">
 require_once ('soapclient/SforcePartnerClient.php');
 
